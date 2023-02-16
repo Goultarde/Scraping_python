@@ -34,25 +34,34 @@ def scrap_list():
         energy = "elec"
     brand = input("entrée la marque de la voiture : ").title()
     model = input("entrée le model de la voiture : ").title()
-    km_max = int(
-        input("entrée le nombre de kilomètre au compteur max de la voiture : "))
-    km_min = 0
     while True:
-        if km_max > 300000 or km_max < 0:
-            km_max = int(input(
-                "Entrée un nombre de kilomètre au compteur valide : "))
-        else:
-            break
-    price_max = int(input("entrée le prix max : "))
-    price_min = 0
+        try:
+            km_max = int(input("Entrez le nombre de kilomètres au compteur max de la voiture : "))
+            if km_max < 0:
+                raise ValueError("Le nombre de kilomètres au compteur ne peut pas être négatif.")
+            elif km_max > 999999999:
+                raise ValueError("Le nombre de kilomètres au compteur ne peut pas être supérieur à 999999999.")
+            else:
+                break
+        except ValueError as e:
+            print(f"{e}, Veuillez entrer un nombre de kilomètres au compteur valide : ")
+    km_min = 0
+    
+    
 
     while True:
+        try:
+            price_max = int(input("entrée le prix max : "))
+        except ValueError as e:
+            print(f"{e}, veuillez entrez un prix ")
+
+
         if price_max < price_min or price_max > 300000:
             price_max = int(input(
                 "le prix maximum ne peut pas être inférieur à 0 ou surpérieur à 300 000€, entrée le prix max : "))
         else:
             break
-
+    price_min = 0
     acutal_year = datetime.datetime.now().year
     year_max = int(input("entrée l'anné max : "))
     year_min = int(input("entrée l'anné min : "))
