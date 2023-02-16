@@ -36,9 +36,10 @@ def scrap_list():
     model = input("entrée le model de la voiture : ").title()
     while True:
         try:
-            km_max = int(input("Entrez le nombre de kilomètres au compteur max de la voiture : "))
-            if not km_input.isnumeric():
-                raise ValueError("Ce n'est pas un chiffre.")
+            km_max_str = input("Entrez le nombre de kilomètres au compteur max de la voiture : ")
+            if km_max_str[0] == "-" or not km_max_str.isnumeric():
+                raise ValueError("Ce n'est pas un chiffre positif")
+            km_max = int(km_max_str)
             if km_max < 0:
                 raise ValueError("Le nombre de kilomètres au compteur ne peut pas être négatif.")
             elif km_max > 999999999:
