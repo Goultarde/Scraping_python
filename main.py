@@ -122,7 +122,7 @@ def scrap_list():
                     'div', 'Vehiculecard_Vehiculecard_subTitle').text
                 year_card = card.find('')
                 year_card_km_model_car_energy = card.find_all(
-                    'div', 'Text_Text_text Vehiculecard_Vehiculecard_characteristicsItems Text_Text_body2')
+                    'div', 'Vehiculecard_Vehiculecard_characteristicsItems')
                 year_card = year_card_km_model_car_energy[0].text
                 km = year_card_km_model_car_energy[1].text
                 model_car = year_card_km_model_car_energy[2].text
