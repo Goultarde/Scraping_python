@@ -46,43 +46,36 @@ def scrap_list():
                 raise ValueError("Le nombre de kilomètres au compteur ne peut pas être supérieur à 999999999.")
             else:
                 break
-        except ValueError as e:
-            print(f"{e}, Veuillez entrer un nombre de kilomètres au compteur valide : ")
+        except ValueError as error:
+            print(f"{error}, Veuillez entrer un nombre de kilomètres au compteur valide : ")
     km_min = 0
-    
-    
-
     while True:
         try:
-            price_max = int(input("entrée le prix max : "))
-        except ValueError as e:
-            print(f"{e}, veuillez entrez un prix ")
-
-
-        if price_max < price_min or price_max > 300000:
-            price_max = int(input(
-                "le prix maximum ne peut pas être inférieur à 0 ou surpérieur à 300 000€, entrée le prix max : "))
-        else:
-            break
+            price_max_str = input("entrée le prix max : ")
+            if price_max_str[0] == "-" or not price_max_str.isnumeric():
+                raise ValueError("Ce n'est pas un chiffre positif")
+            price_max = int(price_max_str)
+            if price_max > 300000:
+                raise ValueError("le prix maximum ne peut pas être surpérieur à 300 000€")
+            else:
+                break
+        except ValueError as error:
+            print(f"{error}, entrer un prix max valide : ")
     price_min = 0
     acutal_year = datetime.datetime.now().year
-    year_max = int(input("entrée l'anné max : "))
-    year_min = int(input("entrée l'anné min : "))
     while True:
-        if year_max < year_min or year_max > acutal_year or year_max < 1900 or year_min < 1900:
-            year_max = int(input(
-                f"l'année doit être comprise entre 1900 et {acutal_year}, entrée l'anné max : "))
-            year_min = int(input("entrée l'anné min : "))
-        else:
+        try:
+            year_max = int(input("Entrez l'année max : "))
+            year_min = int(input("Entrez l'année min : "))
+            if year_max < year_min or year_max > acutal_year or year_max < 1900 or year_min < 1900:
+                print(f"L'année doit être comprise entre 1900 et {acutal_year}. Veuillez entrer des années valides.")
+                continue
             break
+        except ValueError:
+            print("Veuillez entrer des années valides.")
 
-    while True:
-        if year_min < 1900:
-            year_max = int(input(
-                f"l'année doit être comprise entre 1900 et {acutal_year}, entrée l'anné minimum : "))
-            year_min = int(input("entrée l'anné min : "))
-        else:
-            break
+    year_max = int(year_max)
+    year_min = int(year_min)
     page = 1
     # html_resquest = requests.get(url)
 
