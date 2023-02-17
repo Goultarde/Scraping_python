@@ -109,7 +109,6 @@ def scrap_list():
                 km = year_card_km_model_car_energy[1].text
                 model_car = year_card_km_model_car_energy[2].text
                 energy_car = year_card_km_model_car_energy[3].text
-
                 
                 price = card.find(
                     'span', 'Vehiculecard_Vehiculecard_price').text
