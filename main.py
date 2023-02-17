@@ -34,6 +34,7 @@ def scrap_list():
         energy = "elec"
     brand = input("entrée la marque de la voiture : ").title()
     model = input("entrée le model de la voiture : ").title()
+    #Je gère les erreurs pour les km au compteur entrer par l'utilisateur
     while True:
         try:
             km_max_str = input("Entrez le nombre de kilomètres au compteur max de la voiture : ")
@@ -54,7 +55,7 @@ def scrap_list():
                 break
         except ValueError as error:
             print(f"{error}, Veuillez entrer un nombre de kilomètres au compteur valide : ")
-
+    #Je gère les erreurs pour les prix entrer par l'utilisateur
     while True:
         try:
             price_max_str = input("Entrée le prix max : ")
@@ -79,16 +80,17 @@ def scrap_list():
         except ValueError as error:
             print(f"{error} Veuillez entrer un prix valide.")
     acutal_year = datetime.datetime.now().year
+    #Je gère les erreurs pour les années entrer par l'utilisateur
     while True:
         try:
             year_max = int(input("Entrez l'année max : "))
             year_min = int(input("Entrez l'année min : "))
             if year_max < year_min or year_max > acutal_year or year_max < 1900 or year_min < 1900:
-                print(f"L'année doit être comprise entre 1900 et {acutal_year}. Veuillez entrer des années valides.")
+                print(f"L'année doit être comprise entre 1900 et {acutal_year}")
                 continue
             break
-        except ValueError:
-            print("Veuillez entrer des années valides.")
+        except ValueError as error:
+            print("{error}, Veuillez entrer des années valides.")
 
     year_max = int(year_max)
     year_min = int(year_min)
