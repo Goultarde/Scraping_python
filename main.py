@@ -110,10 +110,7 @@ def scrap_list():
                 model_car = year_card_km_model_car_energy[2].text
                 energy_car = year_card_km_model_car_energy[3].text
 
-                # all = "year_card,km,model_car,energy : "
-                # for element in year_card_km_model_car_energy:
-                #    all+=f"{element.text}, "
-                # garanty =
+                
                 price = card.find(
                     'span', 'Vehiculecard_Vehiculecard_price').text
                 integer_price = re.findall("\d+", price)
