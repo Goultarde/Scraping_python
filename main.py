@@ -40,28 +40,44 @@ def scrap_list():
             if km_max_str[0] == "-" or not km_max_str.isnumeric():
                 raise ValueError("Ce n'est pas un chiffre positif")
             km_max = int(km_max_str)
-            if km_max < 0:
-                raise ValueError("Le nombre de kilomètres au compteur ne peut pas être négatif.")
-            elif km_max > 999999999:
-                raise ValueError("Le nombre de kilomètres au compteur ne peut pas être supérieur à 999999999.")
+            if km_max < 0 or km_max > 999999999:
+                raise ValueError("Le nombre de kilomètres au compteur doit être compris entre 0 et 999999999.")
+            km_min_str = input("Entrez le nombre de kilomètres au compteur min de la voiture : ")
+            if km_min_str[0] == "-" or not km_min_str.isnumeric():
+                raise ValueError("Ce n'est pas un chiffre positif")
+            km_min = int(km_min_str)
+            if km_min < 0 or km_min > 999999999:
+                raise ValueError("Le nombre de kilomètres au compteur doit être compris entre 0 et 999999999.")
+            if km_max < km_min:
+                raise ValueError("Le nombre de kilomètres au compteur max doit être supérieur au nombre de kilomètres au compteur min.")
             else:
                 break
         except ValueError as error:
             print(f"{error}, Veuillez entrer un nombre de kilomètres au compteur valide : ")
-    km_min = 0
+
     while True:
         try:
-            price_max_str = input("entrée le prix max : ")
-            if price_max_str[0] == "-" or not price_max_str.isnumeric():
-                raise ValueError("Ce n'est pas un chiffre positif")
+            price_max_str = input("Entrée le prix max : ")
+            if not price_max_str.isnumeric():
+                raise ValueError("Le prix doit être un nombre positif.")
             price_max = int(price_max_str)
-            if price_max > 300000:
-                raise ValueError("le prix maximum ne peut pas être surpérieur à 300 000€")
+            if price_max < 0:
+                raise ValueError("Le prix doit être un nombre positif.")
+            elif price_max > 300000:
+                raise ValueError("Le prix maximum ne peut pas être supérieur à 300000€.")
+            
+            price_min_str = input("Entrée le prix min : ")
+            if not price_min_str.isnumeric():
+                raise ValueError("Le prix doit être un nombre positif.")
+            price_min = int(price_min_str)
+            if price_min < 0:
+                raise ValueError("Le prix doit être un nombre positif.")
+            elif price_min > price_max:
+                raise ValueError("Le prix minimum ne peut pas être supérieur au prix maximum.")
             else:
                 break
         except ValueError as error:
-            print(f"{error}, entrer un prix max valide : ")
-    price_min = 0
+            print(f"{error} Veuillez entrer un prix valide.")
     acutal_year = datetime.datetime.now().year
     while True:
         try:
